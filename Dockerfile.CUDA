@@ -1,6 +1,6 @@
 FROM nvidia/cuda:8.0-cudnn7-runtime-ubuntu16.04 AS runtime
 
-RUN apt update && apt install -y procps libcurl4 libicu63 libatomic1 libopenblas-base && apt clean
+RUN apt update && apt install -y procps libcurl3 libicu55 libatomic1 libopenblas-base && apt clean
 
 FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04 AS build
 
