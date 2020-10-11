@@ -84,7 +84,9 @@ else()
     endif()
 endif()
 
-# set(BACKEND "eigen" CACHE STRING "BACKEND" FORCE)
+option(DYNET_BLAS_BACKEND "Set the backend used by DyNet." "eigen")
+
+set(BACKEND "${DYNET_BLAS_BACKEND}" CACHE STRING "BACKEND" FORCE)
 
 include(external/InitializeExternalComponents.cmake)
 
