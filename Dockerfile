@@ -24,3 +24,5 @@ COPY --from=build /service/build/bin/lstmsdparser /app/lstmsdparser
 WORKDIR /app
 
 CMD ["lstmsdparser"]
+
+ENTRYPOINT [ "bash" ]
