@@ -1,6 +1,6 @@
-# if(UNIX)
-#     set(CMAKE_FIND_LIBRARY_SUFFIXES ".a" CACHE STRING "CMAKE_FIND_LIBRARY_SUFFIXES" FORCE)
-# endif()
+if(POLICY CMP0072)
+  cmake_policy(SET CMP0072 NEW)
+endif()
 
 find_package(Threads REQUIRED)
 
