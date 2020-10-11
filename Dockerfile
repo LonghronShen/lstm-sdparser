@@ -25,7 +25,4 @@ WORKDIR /app
 
 RUN ldconfig
 
-# You can use the container with:
-# docker run -ti --rm --gpus all lstmsdparser:latest
-
 CMD ["lstmsdparser"]
