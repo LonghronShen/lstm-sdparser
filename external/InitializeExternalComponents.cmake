@@ -11,6 +11,7 @@ endif()
 if(WIN32)
     set(Boost_USE_STATIC_LIBS ON CACHE STRING "Boost_USE_STATIC_LIBS" FORCE)
     set(Boost_USE_STATIC_RUNTIME ON CACHE STRING "Boost_USE_STATIC_RUNTIME" FORCE)
+    set(BOOST_PYTHON_STATIC_LIB ON CACHE STRING "BOOST_PYTHON_STATIC_LIB" FORCE)
 endif()
 
 # find a boost install with the libraries unit_test_framework
@@ -28,6 +29,18 @@ else()
     endif()
 endif()
 
-# look for Eigen
-add_subdirectory(external/eigen)
-add_subdirectory(external/dynet)
+# looking for Eigen
+find_package(Eigen3 QUIET)
+if(NOT EIGEN3_FOUND)
+    set(EIGEN_TEST_CXX11 ON CACHE STRING "EIGEN_TEST_CXX11" FORCE)
+    add_subdirectory(external/eigen)
+    set(EIGEN3_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/eigen" CACHE STRING "EIGEN3_INCLUDE_DIR" FORCE)
+endif()
+
+find_package(DyNet QUIET)
+if(NOT TH_INCLUDE_DIR)
+    add_subdirectory(external/dynet EXCLUDE_FROM_ALL)
+    set(TH_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/dynet" CACHE STRING "TH_INCLUDE_DIR" FORCE)
+endif()
+
+include_directories(external/unistd_h)

@@ -39,4 +39,5 @@ target_include_directories(lstmsdparser-lib
     PUBLIC "${CMAKE_CURRENT_LIST_DIR}/../../external/rapidjson/include"
     PUBLIC ${Boost_INCLUDE_DIRS}
     PUBLIC ${EIGEN3_INCLUDE_DIR}
+    PUBLIC ${TH_INCLUDE_DIR}
 )

@@ -12,5 +12,7 @@ file(GLOB_RECURSE src
 add_executable(lstmsdparser ${src})
 
 target_link_libraries(lstmsdparser
+    PUBLIC ${Boost_LIBRARIES}
+    PUBLIC dynet
     PUBLIC lstmsdparser-lib
 )

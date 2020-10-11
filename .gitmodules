@@ -7,3 +7,6 @@
 [submodule "external/dynet"]
 	path = external/dynet
 	url = https://github.com/clab/dynet.git
+[submodule "external/unistd_h"]
+	path = external/unistd_h
+	url = https://github.com/win32ports/unistd_h.git

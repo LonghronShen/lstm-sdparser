@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
-if(TARGET cnn)
+if(TARGET lstmsdparser-lib)
     return()
 endif()
 
@@ -28,11 +28,18 @@ set(project_name cnn)
 
 project(${project_name} C CXX)
 
-set(CMAKE_CXX_STANDARD 17 CACHE STRING "Set to 11 or 14 to enable C++11 or C++17 builds, respectively." FORCE)
+set(CMAKE_CXX_STANDARD 14 CACHE STRING "Set to 11 or 14 to enable C++11 or C++14 builds, respectively." FORCE)
 set(CMAKE_C_STANDARD 11 CACHE STRING "Set to 99 or 11 to enable C99 or C11 builds, respectively." FORCE)
 set_property(GLOBAL PROPERTY CXX_STANDARD_REQUIRED ON)
+set_property(GLOBAL PROPERTY CXX_EXTENSIONS OFF)
 
 add_compile_definitions("__STDC_WANT_LIB_EXT1__=1")
+
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+add_link_options("/LIBPATH:${CMAKE_BINARY_DIR}/bin")
 
 include_directories(${CMAKE_BINARY_DIR})
 
@@ -85,4 +92,4 @@ set(WITH_EIGEN_BACKEND ON CACHE STRING "WITH_EIGEN_BACKEND" FORCE)
 
 include(external/InitializeExternalComponents.cmake)
 
-add_subdirectory(lstmsdparser)
+add_subdirectory(src)
