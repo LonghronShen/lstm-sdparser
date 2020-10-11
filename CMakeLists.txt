@@ -84,8 +84,7 @@ else()
     endif()
 endif()
 
-set(BACKEND "eigen" CACHE STRING "BACKEND" FORCE)
-set(WITH_EIGEN_BACKEND ON CACHE STRING "WITH_EIGEN_BACKEND" FORCE)
+# set(BACKEND "eigen" CACHE STRING "BACKEND" FORCE)
 
 include(external/InitializeExternalComponents.cmake)
 

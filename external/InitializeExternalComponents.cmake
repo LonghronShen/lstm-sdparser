@@ -33,7 +33,7 @@ endif()
 find_package(Eigen3 QUIET)
 if(NOT EIGEN3_FOUND)
     set(EIGEN_TEST_CXX11 ON CACHE STRING "EIGEN_TEST_CXX11" FORCE)
-    add_subdirectory(external/eigen)
+    add_subdirectory(external/eigen EXCLUDE_FROM_ALL)
     set(EIGEN3_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/eigen" CACHE STRING "EIGEN3_INCLUDE_DIR" FORCE)
 endif()
 
