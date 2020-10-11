@@ -13,7 +13,7 @@ case "${unameOut}" in
     Darwin*)
         machine=osx
         hash sudo 2>/dev/null || { echo >&2 "Plesse ensure you have executed 'xcode-select --install' to have build tools ready."; exit; }
-        brew install boost@1.67 protobuf@3.6.0 icu4c
+        brew install boost@1.60
         ;;
     CYGWIN*)        machine=win;;
     MINGW32_NT)
@@ -28,5 +28,3 @@ case "${unameOut}" in
         echo "Not supported platform: ${machine}"
         exit -1
 esac
-
-git submodule update --init --recursive

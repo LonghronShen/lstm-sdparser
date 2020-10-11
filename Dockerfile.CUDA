@@ -6,7 +6,7 @@ FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04 AS build
 
 WORKDIR /app
 
-COPY utilities .
+COPY utilities utilities
 
 RUN bash ./utilities/bootstrap.sh
 
