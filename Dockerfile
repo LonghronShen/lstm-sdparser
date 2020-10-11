@@ -19,7 +19,7 @@ FROM runtime AS final
 COPY --from=build /usr/lib/x86_64-linux-gnu/libboost* /usr/lib/x86_64-linux-gnu/
 
 COPY --from=build /app/build/bin/libdynet.so /usr/local/lib/
-COPY --from=build /app/build/bin/lstmsdparser /app/
+COPY --from=build /app/build/bin/lstmsdparser /usr/local/bin/
 
 WORKDIR /app
 
@@ -28,4 +28,4 @@ RUN ldconfig
 # You can use the container with:
 # docker run -ti --rm --gpus all lstmsdparser:latest
 
-CMD ["./lstmsdparser"]
+CMD ["lstmsdparser"]
