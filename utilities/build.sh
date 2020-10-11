@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DYNET_BLAS_BACKEND={1:-eigen}
+export DYNET_BLAS_BACKEND=${1:-eigen}
 
 mkdir -p build
 
