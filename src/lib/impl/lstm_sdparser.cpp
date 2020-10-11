@@ -1,6 +1,6 @@
-#include "lstmsdparser/lstm_sdparser.h"
-#include "lstmsdparser/system.h"
-
+#include <lstmsdparser/algorithms.h>
+#include <lstmsdparser/lstm_sdparser.h>
+#include <lstmsdparser/system.h>
 
 namespace lstmsdparser {
 
@@ -3067,7 +3067,7 @@ void LSTMParser::train(const std::string fname, const unsigned unk_strategy,
           trainer->update_epoch(); /*sgd.update_epoch();*/
         }
         cerr << "**SHUFFLE\n";
-        std::random_shuffle(order.begin(), order.end());
+        lstmsdparser::algorithms::random_shuffle(order.begin(), order.end());
       }
       tot_seen += 1;
       const std::vector<unsigned> &sentence = corpus.sentences[order[si]];
