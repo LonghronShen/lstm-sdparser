@@ -43,4 +43,6 @@ if(NOT TH_INCLUDE_DIR)
     set(TH_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/dynet" CACHE STRING "TH_INCLUDE_DIR" FORCE)
 endif()
 
-include_directories(external/unistd_h)
+if(WIN32)
+    include_directories(external/unistd_h)
+endif()
