@@ -16,13 +16,15 @@ RUN bash ./utilities/build.sh
 
 FROM runtime AS final
 
-COPY --from=build /app/build/bin/*.so /usr/lib/
 COPY --from=build /usr/lib/x86_64-linux-gnu/libboost* /usr/lib/x86_64-linux-gnu/
 
-COPY --from=build /app/build/bin/lstmsdparser /app/lstmsdparser
+COPY --from=build /app/build/bin /app/
 
 WORKDIR /app
 
-CMD ["lstmsdparser"]
+# You can use the container with:
+# docker run -ti --rm --gpus all lstmsdparser:latest
 
-ENTRYPOINT [ "bash" ]
+CMD ["./lstmsdparser"]
+
+ENTRYPOINT [ "/bin/bash" ]

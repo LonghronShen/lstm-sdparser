@@ -7,6 +7,8 @@ build*/
 .vs/
 .idea/
 
+examples/
+
 Dockerfile*
 
 .dockerignore
