@@ -2,14 +2,13 @@
 
 set -x
 
-hash sudo 2>/dev/null || { echo >&2 "sudo is required but it's not installed."; apt update && apt install -y sudo; }
-
 unameOut="$(uname -s)"
 arch="x64"
 case "${unameOut}" in
     Linux*)
         machine=linux
-        sudo apt update && sudo apt install -y git build-essential libopenblas-dev python3-pip python3-all-dev libboost-all-dev libicu-dev
+        apt update && apt install -y git build-essential libopenblas-dev python3-pip python3-all-dev libboost-all-dev libicu-dev
+        hash cmake 2>/dev/null || { pip3 install -i https://mirrors.aliyun.com/pypi/simple cmake; }
         ;;
     Darwin*)
         machine=osx

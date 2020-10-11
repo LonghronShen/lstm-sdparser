@@ -1,0 +1,31 @@
+FROM nvidia/cuda:11.1-runtime-ubuntu16.04 AS runtime
+
+RUN apt update && apt install -y procps libcurl4 libicu63 libatomic1 libopenblas-base && apt clean
+
+FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04 AS build
+
+WORKDIR /app
+
+COPY utilities .
+
+RUN bash ./utilities/bootstrap.sh
+
+COPY . .
+
+RUN bash ./utilities/build.sh cuda
+
+FROM runtime AS final
+
+COPY --from=build /service/build/bin/*.so /usr/lib/
+COPY --from=build /usr/lib/x86_64-linux-gnu/libboost* /usr/lib/x86_64-linux-gnu/
+
+COPY --from=build /service/build/bin/lstmsdparser /app/lstmsdparser
+
+WORKDIR /app
+
+# You can use the container with:
+# docker run -ti --rm --gpus all lstmsdparser:latest
+
+CMD ["lstmsdparser"]
+
+ENTRYPOINT [ "bash" ]

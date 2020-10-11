@@ -15,7 +15,7 @@ if(WIN32)
 endif()
 
 # find a boost install with the libraries unit_test_framework
-find_package(Boost 1.65.1 REQUIRED COMPONENTS serialization thread log log_setup system program_options filesystem coroutine locale regex unit_test_framework)
+find_package(Boost 1.58 REQUIRED COMPONENTS serialization thread log log_setup system program_options filesystem coroutine locale regex unit_test_framework)
 if(Boost_FOUND)
     message(STATUS "** Boost Include: ${Boost_INCLUDE_DIR}")
     message(STATUS "** Boost Libraries Directory: ${Boost_LIBRARY_DIRS}")
