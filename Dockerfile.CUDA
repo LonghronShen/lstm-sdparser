@@ -16,10 +16,10 @@ RUN bash ./utilities/build.sh cuda
 
 FROM runtime AS final
 
-COPY --from=build /service/build/bin/*.so /usr/lib/
+COPY --from=build /app/build/bin/*.so /usr/lib/
 COPY --from=build /usr/lib/x86_64-linux-gnu/libboost* /usr/lib/x86_64-linux-gnu/
 
-COPY --from=build /service/build/bin/lstmsdparser /app/lstmsdparser
+COPY --from=build /app/build/bin/lstmsdparser /app/lstmsdparser
 
 WORKDIR /app
 
