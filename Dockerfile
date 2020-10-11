@@ -1,4 +1,4 @@
-FROM docker-mirror.sh.synyi.com/debian:buster-slim AS runtime
+FROM debian:buster-slim AS runtime
 
 RUN apt update && apt install -y procps libcurl4 libicu63 libatomic1 libopenblas-base && apt clean
 
