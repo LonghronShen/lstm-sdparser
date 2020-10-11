@@ -39,15 +39,12 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-add_link_options("/LIBPATH:${CMAKE_BINARY_DIR}/bin")
-
 include_directories(${CMAKE_BINARY_DIR})
 
 if(WIN32 OR WIN64)
-    # include(BuildForWinXP)
-
     add_compile_definitions("WIN32_LEAN_AND_MEAN" "_CRT_SECURE_NO_WARNINGS" "NOMINMAX")
     if(MSVC)
+        add_link_options("/LIBPATH:${CMAKE_BINARY_DIR}/bin")
         add_compile_options("/source-charset:utf-8" "/EHsc" "/Zc:threadSafeInit-")
 
         if(NOT CMAKE_BUILD_TYPE)
