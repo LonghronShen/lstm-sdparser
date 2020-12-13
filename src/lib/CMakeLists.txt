@@ -27,11 +27,19 @@ add_library(lstmsdparser-lib
     STATIC ${src}
 )
 
+if(BACKEND MATCHES "^eigen$")
+    set(DYNET_LIB "dynet")
+elseif(BACKEND MATCHES "^cuda$")
+    set(DYNET_LIB "gdynet")
+else()
+    message(SEND_ERROR "BACKEND must be eigen or cuda")
+endif()
+
 target_link_libraries(lstmsdparser-lib
     PUBLIC ${CMAKE_THREAD_LIBS_INIT}
     PUBLIC ${Boost_LIBRARIES}
     PUBLIC ${DL_LIBRARY}
-    PUBLIC dynet
+    PUBLIC ${DYNET_LIB}
 )
 
 target_include_directories(lstmsdparser-lib
