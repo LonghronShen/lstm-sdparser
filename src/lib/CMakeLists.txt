@@ -32,7 +32,7 @@ if(BACKEND MATCHES "^eigen$")
 elseif(BACKEND MATCHES "^cuda$")
     set(DYNET_LIB "gdynet")
 else()
-    message(SEND_ERROR "BACKEND must be eigen or cuda")
+    message(SEND_ERROR "BACKEND must be eigen or cuda. Current value is: ${BACKEND}.")
 endif()
 
 target_link_libraries(lstmsdparser-lib
