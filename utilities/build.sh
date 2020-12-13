@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export DYNET_BLAS_BACKEND=${1:-eigen}
+export WITH_CUDA=${1:-off}
 
 mkdir -p build
 
 cd build
-cmake -DDYNET_BLAS_BACKEND="${DYNET_BLAS_BACKEND}" ..
+cmake -DWITH_CUDA="${WITH_CUDA}" ..
 
 cmake --build . -j$(nproc)

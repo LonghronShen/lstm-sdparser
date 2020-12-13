@@ -12,7 +12,7 @@ RUN bash ./utilities/bootstrap.sh
 
 COPY . .
 
-RUN bash ./utilities/build.sh cuda
+RUN bash ./utilities/build.sh on
 
 FROM runtime AS final
 

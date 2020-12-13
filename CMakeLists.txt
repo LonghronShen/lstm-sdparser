@@ -84,10 +84,24 @@ else()
     endif()
 endif()
 
-option(DYNET_BLAS_BACKEND "Set the backend used by DyNet." "eigen")
+option(WITH_CUDA "Set the backend used by DyNet." OFF)
 
-set(BACKEND "${DYNET_BLAS_BACKEND}" CACHE STRING "BACKEND" FORCE)
+if(WITH_CUDA)
+    set(BACKEND "cuda" CACHE STRING "BACKEND" FORCE)
+else()
+    set(BACKEND "eigen" CACHE STRING "BACKEND" FORCE)
+endif()
 
 include(external/InitializeExternalComponents.cmake)
+
+if(BACKEND MATCHES "^eigen$")
+    set(DYNET_LIB "dynet" CACHE STRING "DYNET_LIB" FORCE)
+    set(WITH_CUDA_BACKEND 0 CACHE STRING "WITH_CUDA_BACKEND" FORCE)
+elseif(BACKEND MATCHES "^cuda$")
+    set(DYNET_LIB "gdynet" CACHE STRING "DYNET_LIB" FORCE)
+    set(WITH_CUDA_BACKEND 1 CACHE STRING "WITH_CUDA_BACKEND" FORCE)
+else()
+    message(SEND_ERROR "BACKEND must be eigen or cuda. Current value is: ${BACKEND}.")
+endif()
 
 add_subdirectory(src)
