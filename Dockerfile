@@ -6,7 +6,7 @@ FROM longhronshens/gcc-cmake:amd64 AS build
 
 WORKDIR /app
 
-COPY utilities utilities
+COPY utilities/bootstrap.sh utilities/bootstrap.sh
 
 RUN bash ./utilities/bootstrap.sh
 
