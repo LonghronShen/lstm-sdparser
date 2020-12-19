@@ -6,13 +6,13 @@ FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04 AS build
 
 WORKDIR /app
 
-COPY utilities utilities
+COPY utilities/bootstrap.sh utilities/bootstrap.sh
 
 RUN bash ./utilities/bootstrap.sh
 
 COPY . .
 
-RUN bash ./utilities/build.sh on
+RUN bash ./utilities/build.sh on 500
 
 FROM runtime AS final
 
